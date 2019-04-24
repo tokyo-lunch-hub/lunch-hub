@@ -1,4 +1,4 @@
-FROM rubylang/ruby:2.6.2-bionic
+FROM rubylang/ruby:2.6.3-bionic
 ENV LANG C.UTF-8
 ENV APP_ROOT /usr/local/src
 RUN mkdir -p $APP_ROOT
