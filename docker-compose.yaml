@@ -1,0 +1,14 @@
+version: '2'
+services:
+  db:
+    image: postgres:9.6
+  api:
+    build: .
+    tty: true
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    volumes:
+      - .:/usr/local/src
