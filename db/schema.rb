@@ -10,11 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_01_232910) do
+ActiveRecord::Schema.define(version: 2019_05_01_234457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "meals", force: :cascade do |t|
+    t.uuid "shops_id"
+    t.string "name", null: false
+    t.text "description", null: false
+    t.decimal "price", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shops_id"], name: "index_meals_on_shops_id"
+  end
 
   create_table "owners", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
@@ -62,6 +72,7 @@ ActiveRecord::Schema.define(version: 2019_05_01_232910) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "meals", "shops", column: "shops_id"
   add_foreign_key "purchases", "users"
   add_foreign_key "shops", "owners"
   add_foreign_key "shops", "prefectures"
