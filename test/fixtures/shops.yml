@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  owner: one
+  status: 1
+  zipcode: MyString
+  prefecture: one
+  address: MyString
+  branch_name: MyString
+  phone_number: MyString
+
+two:
+  owner: two
+  status: 1
+  zipcode: MyString
+  prefecture: two
+  address: MyString
+  branch_name: MyString
+  phone_number: MyString
