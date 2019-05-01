@@ -2,8 +2,6 @@ version: '2'
 services:
   db:
     image: postgres:9.6
-    ports:
-      - "5432:5432"
   api:
     build: .
     tty: true
@@ -14,4 +12,4 @@ services:
     depends_on:
       - db
     volumes:
-      - .:/usr/local/src/lunch-hub
+      - .:/usr/local/src
