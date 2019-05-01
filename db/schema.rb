@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_01_231347) do
+ActiveRecord::Schema.define(version: 2019_05_01_232910) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -25,12 +25,32 @@ ActiveRecord::Schema.define(version: 2019_05_01_231347) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "prefectures", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "purchases", force: :cascade do |t|
     t.uuid "user_id"
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_purchases_on_user_id"
+  end
+
+  create_table "shops", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "owner_id"
+    t.integer "status", null: false
+    t.string "zipcode", null: false
+    t.string "address", null: false
+    t.string "branch_name", null: false
+    t.string "phone_number", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "prefecture_id"
+    t.index ["owner_id"], name: "index_shops_on_owner_id"
+    t.index ["prefecture_id"], name: "index_shops_on_prefecture_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -43,4 +63,6 @@ ActiveRecord::Schema.define(version: 2019_05_01_231347) do
   end
 
   add_foreign_key "purchases", "users"
+  add_foreign_key "shops", "owners"
+  add_foreign_key "shops", "prefectures"
 end
