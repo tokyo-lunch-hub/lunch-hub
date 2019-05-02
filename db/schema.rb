@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_01_234457) do
+ActiveRecord::Schema.define(version: 2019_05_02_005835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -39,6 +39,16 @@ ActiveRecord::Schema.define(version: 2019_05_01_234457) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "purchase_meals", force: :cascade do |t|
+    t.bigint "purchase_id", null: false
+    t.bigint "meal_id", null: false
+    t.integer "meal_amount", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["meal_id"], name: "index_purchase_meals_on_meal_id"
+    t.index ["purchase_id"], name: "index_purchase_meals_on_purchase_id"
   end
 
   create_table "purchases", force: :cascade do |t|
@@ -73,6 +83,8 @@ ActiveRecord::Schema.define(version: 2019_05_01_234457) do
   end
 
   add_foreign_key "meals", "shops", column: "shops_id"
+  add_foreign_key "purchase_meals", "meals"
+  add_foreign_key "purchase_meals", "purchases"
   add_foreign_key "purchases", "users"
   add_foreign_key "shops", "owners"
   add_foreign_key "shops", "prefectures"
