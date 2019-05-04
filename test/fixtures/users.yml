@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name_kana: MyString
+  last_name_kana: MyString
+  phone_number: MyString
+  last_logged_in_at: 2019-05-01 22:29:41
+
+two:
+  first_name_kana: MyString
+  last_name_kana: MyString
+  phone_number: MyString
+  last_logged_in_at: 2019-05-01 22:29:41
