@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_02_005835) do
+ActiveRecord::Schema.define(version: 2019_05_05_150539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -53,7 +53,6 @@ ActiveRecord::Schema.define(version: 2019_05_02_005835) do
 
   create_table "purchases", force: :cascade do |t|
     t.uuid "user_id"
-    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_purchases_on_user_id"
